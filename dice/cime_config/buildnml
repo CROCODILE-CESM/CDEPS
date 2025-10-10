@@ -99,6 +99,9 @@ def _create_namelists(case, confdir, inst_string, infile, nmlgen, data_list_path
     streams.create_stream_xml(streamlist, case, outfile, data_list_path,
                               os.path.join(caseroot,'user_nl_dice_streams'+inst_string))
 
+    # ICE_NCAT is zero by default. Setting to 1 ice thickness categories for DICE
+    case.set_value("ICE_NCAT", 1)
+
 ###############################################################################
 def buildnml(case, caseroot, compname):
 ###############################################################################
