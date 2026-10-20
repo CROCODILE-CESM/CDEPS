@@ -46,6 +46,12 @@ module cdeps_dice_comp
   use dice_datamode_cplhist_mod , only : dice_datamode_cplhist_advance
   use dice_datamode_cplhist_mod , only : dice_datamode_cplhist_restart_read
   use dice_datamode_cplhist_mod , only : dice_datamode_cplhist_restart_write
+  ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+  use dice_datamode_mesaclip_mod , only : dice_datamode_mesaclip_advertise
+  use dice_datamode_mesaclip_mod , only : dice_datamode_mesaclip_init_pointers
+  use dice_datamode_mesaclip_mod , only : dice_datamode_mesaclip_advance
+  use dice_datamode_mesaclip_mod , only : dice_datamode_mesaclip_restart_read
+  use dice_datamode_mesaclip_mod , only : dice_datamode_mesaclip_restart_write
 
   implicit none
   private
@@ -270,7 +276,7 @@ contains
 
     ! Validate datamode
     select case (trim(datamode))
-    case('ssmi','ssmi_iaf','cplhist')
+    case('ssmi','ssmi_iaf','cplhist','mesaclip')
        if (mainproc) write(logunit,'(3a)') subname,' dice datamode = ',trim(datamode)
     case default
        call shr_log_error(' ERROR illegal dice datamode = '//trim(datamode), rc=rc)
@@ -288,6 +294,14 @@ contains
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
     case('cplhist')
        call dice_datamode_cplhist_advertise(exportState, fldsexport, flds_scalar_name, rc)
+       if (ChkErr(rc,__LINE__,u_FILE_u)) return
+    ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+    case('mesaclip')
+       call NUOPC_CompAttributeGet(gcomp, name='flds_i2o_per_cat', value=cvalue, rc=rc)
+       if (ChkErr(rc,__LINE__,u_FILE_u)) return
+       read(cvalue,*) flds_i2o_per_cat  ! module variable
+       call dice_datamode_mesaclip_advertise(importState, exportState, fldsimport, fldsexport, &
+            flds_scalar_name, flds_i2o_per_cat, rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
     end select
 
@@ -506,6 +520,10 @@ contains
        case('cplhist')
           call dice_datamode_cplhist_init_pointers(exportState, sdat, rc)
           if (chkerr(rc,__LINE__,u_FILE_u)) return
+       ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+       case('mesaclip')
+          call dice_datamode_mesaclip_init_pointers(importState, exportState, sdat, flds_i2o_per_cat, rc)
+          if (chkerr(rc,__LINE__,u_FILE_u)) return
        end select
 
        ! read restart if needed
@@ -518,6 +536,10 @@ contains
              if (ChkErr(rc,__LINE__,u_FILE_u)) return
           case('cplhist')
              call dice_datamode_cplhist_restart_read(restfilm, rpfile, logunit, my_task, mpicom, sdat)
+          ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+          case('mesaclip')
+             call dice_datamode_mesaclip_restart_read(restfilm, rpfile, logunit, my_task, mpicom, sdat, rc)
+             if (ChkErr(rc,__LINE__,u_FILE_u)) return
           end select
        end if
 
@@ -549,6 +571,11 @@ contains
     case ('cplhist')
        call dice_datamode_cplhist_advance(sdat, rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
+    ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+    case ('mesaclip')
+       call dice_datamode_mesaclip_advance(exportState, importState, cosarg, flds_i2o_per_cat, &
+            flux_swpf, flux_Qmin, flux_Qacc, flux_Qacc0, dt, logunit, restart_read, rc)
+       if (ChkErr(rc,__LINE__,u_FILE_u)) return
     end select
 
     ! Write restarts if needed
@@ -563,6 +590,11 @@ contains
        case ('cplhist')
           call dice_datamode_cplhist_restart_write(rpfile, case_name, inst_suffix, target_ymd, target_tod, &
                logunit, my_task, sdat)
+       ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+       case ('mesaclip')
+          call dice_datamode_mesaclip_restart_write(rpfile, case_name, inst_suffix, target_ymd, target_tod, &
+               logunit, my_task, sdat, rc)
+          if (ChkErr(rc,__LINE__,u_FILE_u)) return
        end select
     end if
 
