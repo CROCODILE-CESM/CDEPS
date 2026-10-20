@@ -8,7 +8,7 @@ module datm_datamode_mesaclip_mod
   use NUOPC            , only : NUOPC_Advertise
   use shr_kind_mod     , only : r8=>shr_kind_r8, i8=>shr_kind_i8, cl=>shr_kind_cl, cs=>shr_kind_cs
   use shr_log_mod      , only : shr_log_error
-  use shr_const_mod    , only : shr_const_rhofw, shr_const_rdair, shr_const_cpdair ! MESACLIP
+  use shr_const_mod    , only : shr_const_rhofw, shr_const_rdair, shr_const_zvir ! MESACLIP
   use dshr_methods_mod , only : dshr_state_getfldptr, chkerr
   use dshr_strdata_mod , only : shr_strdata_type, shr_strdata_get_stream_pointer
   use dshr_strdata_mod , only : shr_strdata_type
@@ -72,8 +72,7 @@ module datm_datamode_mesaclip_mod
   ! MESACLIP: constants for the conversions and derived fields
   real(r8), parameter :: rhofw  = shr_const_rhofw  ! fresh water density (kg/m3)
   real(r8), parameter :: rdair  = shr_const_rdair  ! dry air gas constant (J/K/kg)
-  real(r8), parameter :: cpdair = shr_const_cpdair ! dry air heat capacity (J/K/kg)
-  real(r8), parameter :: p0     = 100000.0_r8      ! potential temperature reference (Pa)
+  real(r8), parameter :: zvir   = shr_const_zvir   ! Rwv/Rdair - 1, for virtual temperature
   ! Visible share of direct shortwave, from the JRA datamode's fixed fractions
   ! (0.28 visible direct, 0.31 near-IR direct).
   real(r8), parameter :: vis_direct = 0.28_r8 / (0.28_r8 + 0.31_r8)
@@ -274,10 +273,11 @@ contains
     Sa_u(:)    = strm_Sa_u(:)
     Sa_v(:)    = strm_Sa_v(:)
 
-    ! MESACLIP: potential temperature and density from T, q and p, which MESACLIP
-    ! doesn't save (density uses virtual temperature, as the JRA datamode does)
-    Sa_ptem(:) = Sa_tbot(:) * (p0 / Sa_pbot(:))**(rdair / cpdair)
-    Sa_dens(:) = Sa_pbot(:) / (rdair * Sa_tbot(:) * (1.0_r8 + 0.608_r8 * Sa_shum(:)))
+    ! MESACLIP: potential temperature and density, which MESACLIP doesn't save.
+    ! CAM references ptem to surface pressure, T*(ps/p)**kappa; with p = PS that is T.
+    ! Density uses virtual temperature, as the JRA datamode does.
+    Sa_ptem(:) = Sa_tbot(:)
+    Sa_dens(:) = Sa_pbot(:) / (rdair * Sa_tbot(:) * (1.0_r8 + zvir * Sa_shum(:)))
 
     ! MESACLIP: WW3 gets the lowest-level winds as its 10 m winds for now
     if (associated(Sa_u10m)) Sa_u10m(:) = Sa_u(:)
