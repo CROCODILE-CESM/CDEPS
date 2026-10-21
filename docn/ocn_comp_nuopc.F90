@@ -52,7 +52,7 @@ module cdeps_docn_comp
   use docn_datamode_cplhist_mod          , only : docn_datamode_cplhist_advertise
   use docn_datamode_cplhist_mod          , only : docn_datamode_cplhist_init_pointers
   use docn_datamode_cplhist_mod          , only : docn_datamode_cplhist_advance
-  ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+  ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
   use docn_datamode_mesaclip_mod         , only : docn_datamode_mesaclip_advertise
   use docn_datamode_mesaclip_mod         , only : docn_datamode_mesaclip_init_pointers
   use docn_datamode_mesaclip_mod         , only : docn_datamode_mesaclip_advance
@@ -340,7 +340,7 @@ contains
     case('cplhist')
        call docn_datamode_cplhist_advertise(exportState, fldsExport, flds_scalar_name, rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
-    ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+    ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
     case('mesaclip')
        call docn_datamode_mesaclip_advertise(exportState, fldsExport, flds_scalar_name, rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
@@ -573,7 +573,7 @@ contains
        case('cplhist')
           call docn_datamode_cplhist_init_pointers(exportState, sdat, model_frac, rc)
           if (ChkErr(rc,__LINE__,u_FILE_u)) return
-       ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+       ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
        case('mesaclip')
           call docn_datamode_mesaclip_init_pointers(exportState, sdat, model_frac, rc)
           if (ChkErr(rc,__LINE__,u_FILE_u)) return
@@ -638,7 +638,7 @@ contains
     case('cplhist')
        call  docn_datamode_cplhist_advance(sst_constant_value=sst_constant_value, rc=rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
-    ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+    ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
     case('mesaclip')
        call docn_datamode_mesaclip_advance(sst_constant_value=sst_constant_value, rc=rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return

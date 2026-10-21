@@ -33,12 +33,12 @@
       <value docn_mode="multilev_dom">sst_salinity_depth_blom,prescribed</value>
       <value docn_mode="multilev">sst_salinity_depth_blom</value>
       <value docn_mode="cplhist">cplhist</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
-      <value docn_mode="mesaclip_hist">MESACLIP_HIST.SST,MESACLIP_HIST.U1_1,MESACLIP_HIST.V1_1</value>
-      <value docn_mode="mesaclip_rcp26">MESACLIP_RCP26.SST,MESACLIP_RCP26.U1_1,MESACLIP_RCP26.V1_1</value>
-      <value docn_mode="mesaclip_rcp45">MESACLIP_RCP45.SST,MESACLIP_RCP45.U1_1,MESACLIP_RCP45.V1_1</value>
-      <value docn_mode="mesaclip_rcp60">MESACLIP_RCP60.SST,MESACLIP_RCP60.U1_1,MESACLIP_RCP60.V1_1</value>
-      <value docn_mode="mesaclip_rcp85">MESACLIP_RCP85.SST,MESACLIP_RCP85.U1_1,MESACLIP_RCP85.V1_1</value>
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
+      <value docn_mode="mesaclip_hist">MESACLIP_HIST.SST,MESACLIP_HIST.U1_1,MESACLIP_HIST.V1_1,MESACLIP_HIST.SSS</value>
+      <value docn_mode="mesaclip_rcp26">MESACLIP_RCP26.SST,MESACLIP_RCP26.U1_1,MESACLIP_RCP26.V1_1,MESACLIP_RCP26.SSS</value>
+      <value docn_mode="mesaclip_rcp45">MESACLIP_RCP45.SST,MESACLIP_RCP45.U1_1,MESACLIP_RCP45.V1_1,MESACLIP_RCP45.SSS</value>
+      <value docn_mode="mesaclip_rcp60">MESACLIP_RCP60.SST,MESACLIP_RCP60.U1_1,MESACLIP_RCP60.V1_1,MESACLIP_RCP60.SSS</value>
+      <value docn_mode="mesaclip_rcp85">MESACLIP_RCP85.SST,MESACLIP_RCP85.U1_1,MESACLIP_RCP85.V1_1,MESACLIP_RCP85.SSS</value>
     </values>
   </entry>
 
@@ -111,7 +111,7 @@
       <value docn_mode="multilev_dom">multilev_sstdata</value>
       <value docn_mode="multilev">multilev</value>
       <value docn_mode="cplhist">cplhist</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value docn_mode="mesaclip">mesaclip</value>
     </values>
   </entry>

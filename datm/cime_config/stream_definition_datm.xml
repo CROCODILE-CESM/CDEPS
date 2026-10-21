@@ -5474,7 +5474,7 @@
     <stream_readmode>single</stream_readmode>
   </stream_entry>
 
-  <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+  <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
   <stream_entry name="MESACLIP_HIST.UBOT">
     <stream_meshfile>
       <meshfile>$DIN_LOC_ROOT/share/meshes/ne120np4_ESMFmesh_cdf5_c20211018.nc</meshfile>

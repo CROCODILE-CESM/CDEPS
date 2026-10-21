@@ -65,7 +65,7 @@
     <stream_readmode>single</stream_readmode>
   </stream_entry>
 
-  <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+  <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
   <stream_entry name="MESACLIP_HIST.aice_d">
     <stream_meshfile>
       <meshfile>$DIN_LOC_ROOT/share/meshes/tx0.1v2_ESMFmesh_cd5_c20210105.nc</meshfile>

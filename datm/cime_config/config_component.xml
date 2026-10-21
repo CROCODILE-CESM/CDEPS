@@ -19,7 +19,7 @@
     <desc option="GSWP3v1"> GSWP3v1 data set </desc>
     <desc option="NLDAS2"> NLDAS2 regional 0.125 degree data set over the U.S. (25-53N, 235-293E). WARNING: Garbage data will be produced for runs extending beyond this regional domain. </desc>
     <desc option="CPLHIST"> Coupler hist data set (in this mode, it is strongly recommended that the model domain and the coupler history forcing are on the same domain)</desc>
-    <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+    <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
     <desc option="MESACLIP-HIST"> MESACLIP HIST from GDEX d651007 (mesaclip datamode)</desc>
     <desc option="MESACLIP-RCP26"> MESACLIP RCP26 from GDEX d651043 (mesaclip datamode)</desc>
     <desc option="MESACLIP-RCP45"> MESACLIP RCP45 from GDEX d651043 (mesaclip datamode)</desc>
@@ -79,7 +79,7 @@
       <value compset="DATM%ERA5">ERA5</value>
       <value compset="DATM%CPLHIST">CPLHIST</value>
       <value compset="DATM%SIMPLE">SIMPLE</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value compset="DATM%MESACLIP-HIST">MESACLIP_HIST</value>
       <value compset="DATM%MESACLIP-RCP26">MESACLIP_RCP26</value>
       <value compset="DATM%MESACLIP-RCP45">MESACLIP_RCP45</value>
@@ -167,7 +167,7 @@
       <value compset="_SLND">none</value>
       <value compset="_DLND">none</value>
       <value compset="_DATM%CPLHIST">cplhist</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value compset="DATM%MESACLIP-HIST">observed</value>
       <value compset="DATM%MESACLIP-RCP26">observed</value>
       <value compset="DATM%MESACLIP-RCP45">observed</value>
@@ -237,7 +237,7 @@
     <desc>case name used to determine stream filenames when DATM_MODE is CPLHIST</desc>
   </entry>
 
-  <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+  <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
   <entry id="DATM_MESACLIP_CASE">
     <type>char</type>
     <valid_values></valid_values>
@@ -281,7 +281,7 @@
       <value compset="2003.*_DATM">$DATM_YR_START</value>
       <value compset="2010.*_DATM">$DATM_YR_START</value>
       <value compset="4804.*_DATM">$DATM_YR_START</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value compset="DATM%MESACLIP-HIST">$DATM_YR_START</value>
       <value compset="DATM%MESACLIP-RCP26">$DATM_YR_START</value>
       <value compset="DATM%MESACLIP-RCP45">$DATM_YR_START</value>
@@ -352,7 +352,7 @@
       <value compset="2000.*_DATM%NLDAS2">1980</value>
       <value compset="2010.*_DATM%NLDAS2">2005</value>
       <value compset="2003.*_DATM%NLDAS2">2002</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value compset="DATM%MESACLIP-HIST">1920</value>
       <value compset="DATM%MESACLIP-RCP26">2006</value>
       <value compset="DATM%MESACLIP-RCP45">2006</value>
@@ -420,7 +420,7 @@
       <value   compset="2000.*_DATM%NLDAS2">2018</value>
       <value   compset="2010.*_DATM%NLDAS2">2014</value>
       <value   compset="2003.*_DATM%NLDAS2">2003</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value compset="DATM%MESACLIP-HIST">2005</value>
       <value compset="DATM%MESACLIP-RCP26">2099</value>
       <value compset="DATM%MESACLIP-RCP45">2099</value>

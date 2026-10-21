@@ -24,9 +24,11 @@ module docn_datamode_mesaclip_mod
   real(r8), pointer :: So_u(:)      => null()
   real(r8), pointer :: So_v(:)      => null()
   real(r8), pointer :: So_bldepth(:) => null()
+  real(r8), pointer :: So_s(:)      => null()
 
   ! stream field pointers
   real(r8), pointer :: strm_So_bldepth(:) => null()
+  real(r8), pointer :: strm_So_s(:)       => null()
   real(r8), pointer :: strm_So_t(:)       => null()
   real(r8), pointer :: strm_So_u(:)       => null()
   real(r8), pointer :: strm_So_v(:)       => null()
@@ -63,6 +65,7 @@ contains
     call dshr_fldList_add(fldsExport, 'So_u'                )
     call dshr_fldList_add(fldsExport, 'So_v'                )
     call dshr_fldList_add(fldsExport, 'So_bldepth'          )
+    call dshr_fldList_add(fldsExport, 'So_s'                ) ! MESACLIP: SSS for CICE
 
     fldlist => fldsExport ! the head of the linked list
     do while (associated(fldlist))
@@ -102,6 +105,8 @@ contains
     if (chkerr(rc,__LINE__,u_FILE_u)) return
     call dshr_state_getfldptr(exportState, 'So_bldepth', fldptr1=So_bldepth, allowNullReturn=.true., rc=rc)
     if (chkerr(rc,__LINE__,u_FILE_u)) return
+    call dshr_state_getfldptr(exportState, 'So_s'     , fldptr1=So_s     , allowNullReturn=.true., rc=rc)
+    if (chkerr(rc,__LINE__,u_FILE_u)) return
 
     ! initialize pointers to required stream fields
     call shr_strdata_get_stream_pointer( sdat, 'So_t', strm_So_t, requirePointer=.true., &
@@ -115,12 +120,15 @@ contains
     if (ChkErr(rc,__LINE__,u_FILE_u)) return
     call shr_strdata_get_stream_pointer( sdat, 'So_bldepth', strm_So_bldepth, rc=rc)
     if (ChkErr(rc,__LINE__,u_FILE_u)) return
+    call shr_strdata_get_stream_pointer( sdat, 'So_s', strm_So_s, rc=rc)
+    if (ChkErr(rc,__LINE__,u_FILE_u)) return
 
     ! Allocation depends on exchanged fields, so check before filling arrays with values here
     So_t(:) = TkFrz
     if (associated(So_u)) So_u(:) = 0.0_r8
     if (associated(So_v)) So_v(:) = 0.0_r8
     if (associated(So_bldepth)) So_bldepth(:) = 0.0_r8
+    if (associated(So_s)) So_s(:) = ocnsalt
 
     ! Set export state ocean fraction (So_omask)
     So_omask(:) = ocn_fraction(:)
@@ -162,6 +170,16 @@ contains
           So_bldepth(:) = strm_So_bldepth(:)
        else
           So_bldepth(:) = shr_const_spval
+       end if
+    end if
+    ! MESACLIP: POP daily SSS holds kg/kg (its units attribute says g/kg); convert
+    ! to g/kg, numerically the psu CICE expects. Without a stream, use the
+    ! reference salinity as docn_datamode_sstdata_mod.F90 does.
+    if (associated(So_s)) then
+       if (associated(strm_So_s)) then
+          So_s(:) = strm_So_s(:) * 1000.0_r8
+       else
+          So_s(:) = ocnsalt
        end if
     end if
 

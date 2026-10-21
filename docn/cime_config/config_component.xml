@@ -32,7 +32,7 @@
     <desc option="AQPFILE">  file input aquaplanet sst </desc>
     <desc option="AQPCONST">  globally constant SST for idealized experiments, such as RCE </desc>
     <desc option="CPLHIST"> mediator history output for ocean fields imported to mediator </desc>
-    <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+    <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
     <desc option="MESACLIP-HIST"> MESACLIP HIST from GDEX d651007 (mesaclip datamode)</desc>
     <desc option="MESACLIP-RCP26"> MESACLIP RCP26 from GDEX d651043 (mesaclip datamode)</desc>
     <desc option="MESACLIP-RCP45"> MESACLIP RCP45 from GDEX d651043 (mesaclip datamode)</desc>
@@ -77,7 +77,7 @@
       <value compset="_DOCN%MULTILEV">multilev</value>
       <value compset="_DOCN%MULTILEV-DOM">multilev_dom</value>
       <value compset="_DOCN%MULTILEV-CPLHIST">multilev_cplhist</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value compset="_DOCN%MESACLIP-HIST">mesaclip_hist</value>
       <value compset="_DOCN%MESACLIP-RCP26">mesaclip_rcp26</value>
       <value compset="_DOCN%MESACLIP-RCP45">mesaclip_rcp45</value>

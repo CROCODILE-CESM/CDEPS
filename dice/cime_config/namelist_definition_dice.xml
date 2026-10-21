@@ -23,7 +23,7 @@
     <values>
       <value dice_mode="ssmi_iaf">ssmi_iaf</value>
       <value dice_mode="ssmi">ssmi_nyf</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value dice_mode="mesaclip_hist">MESACLIP_HIST.aice_d</value>
       <value dice_mode="mesaclip_rcp26">MESACLIP_RCP26.aice_d</value>
       <value dice_mode="mesaclip_rcp45">MESACLIP_RCP45.aice_d</value>
@@ -47,7 +47,7 @@
     <values>
       <value dice_mode="ssmi_iaf">ssmi_iaf</value>
       <value dice_mode="ssmi">ssmi</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value dice_mode="mesaclip">mesaclip</value>
     </values>
   </entry>

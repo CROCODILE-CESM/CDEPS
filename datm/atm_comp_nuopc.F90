@@ -54,7 +54,7 @@ module cdeps_datm_comp
   use datm_datamode_cplhist_mod , only : datm_datamode_cplhist_advertise
   use datm_datamode_cplhist_mod , only : datm_datamode_cplhist_init_pointers
   use datm_datamode_cplhist_mod , only : datm_datamode_cplhist_advance
-  ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+  ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
   use datm_datamode_mesaclip_mod, only : datm_datamode_mesaclip_advertise
   use datm_datamode_mesaclip_mod, only : datm_datamode_mesaclip_init_pointers
   use datm_datamode_mesaclip_mod, only : datm_datamode_mesaclip_advance
@@ -405,7 +405,7 @@ contains
     case ('CPLHIST')
        call datm_datamode_cplhist_advertise(exportState, fldsExport, flds_scalar_name, rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
-    ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+    ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
     case ('MESACLIP')
        call datm_datamode_mesaclip_advertise(exportState, fldsExport, flds_scalar_name, rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
@@ -676,7 +676,7 @@ contains
        case('CPLHIST')
           call datm_datamode_cplhist_init_pointers(importState, exportState, sdat, rc)
           if (ChkErr(rc,__LINE__,u_FILE_u)) return
-       ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+       ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
        case('MESACLIP')
           call datm_datamode_mesaclip_init_pointers(importState, exportState, sdat, rc)
           if (ChkErr(rc,__LINE__,u_FILE_u)) return
@@ -758,7 +758,7 @@ contains
     case('CPLHIST')
        call datm_datamode_cplhist_advance(rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return
-    ! MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py
+    ! MESACLIP: added by mesawave add_mesaclip_to_cesm.py
     case('MESACLIP')
        call datm_datamode_mesaclip_advance(rc)
        if (ChkErr(rc,__LINE__,u_FILE_u)) return

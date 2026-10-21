@@ -16,7 +16,7 @@
     <desc ice="DICE[%SSMI][%IAF][%MESACLIP-HIST][%MESACLIP-RCP26][%MESACLIP-RCP45][%MESACLIP-RCP60][%MESACLIP-RCP85]">dice mode </desc>
     <desc option="SSMI">is ssmi</desc>
     <desc option="IAF"> is siaf</desc>
-    <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+    <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
     <desc option="MESACLIP-HIST"> MESACLIP HIST from GDEX d651007 (mesaclip datamode)</desc>
     <desc option="MESACLIP-RCP26"> MESACLIP RCP26 from GDEX d651043 (mesaclip datamode)</desc>
     <desc option="MESACLIP-RCP45"> MESACLIP RCP45 from GDEX d651043 (mesaclip datamode)</desc>
@@ -40,7 +40,7 @@
     <values match="last">
       <value compset="DICE%SSMI">ssmi</value>
       <value compset="DICE%IAF">ssmi_iaf</value>
-      <!-- MESACLIP: added by mesawave code/add_mesaclip_to_cesm.py -->
+      <!-- MESACLIP: added by mesawave add_mesaclip_to_cesm.py -->
       <value compset="DICE%MESACLIP-HIST">mesaclip_hist</value>
       <value compset="DICE%MESACLIP-RCP26">mesaclip_rcp26</value>
       <value compset="DICE%MESACLIP-RCP45">mesaclip_rcp45</value>
